@@ -1,0 +1,58 @@
+// Replace the path below with
+#USER_SIMPLSHARP_LIBRARY "<PATH>\bin\FlickrFeed" 
+
+
+DIGITAL_INPUT Go;
+STRING_OUTPUT ImageURL;
+
+FlickrFeed myFlickrFeed;
+
+
+/*******************************************************************************************
+  Main()
+  Uncomment and place one-time startup code here
+  (This code will get called when the system starts up)
+*******************************************************************************************/
+
+// Init to set up the class, and all the delegates, etc.
+Function Init()
+{
+	RegisterDelegate(myFlickrFeed,OnNewURL,MyOnNewURL); // Register the MyOnNewURL function to the OnNewURL delegate
+	RegisterDelegate(myFlickrFeed,OnError,MyOnError); // Register the MyOnError function to the OnError delegate
+	myFlickrFeed.UserID = "52665697@N04"; //ID for CrestronElectronics. Use http://idgettr.com/ to find out the Flickr UserID.
+	myFlickrFeed.SlideshowInterval = 1; // Every minute change the photo.
+	myFlickrFeed.Load(); // Start the whole darn thing
+
+}
+
+// MyOnError is triggered from the C# module when an error happens. We add it to the ErrorLog
+callback Function MyOnError(String strError)
+{
+	GenerateUserError("FlickrFeed %s\n\r",strError);
+}
+
+//MyOnNewURL is triggered from the C# module whenever the slideshowinterval expires, and a new photo has to be displayed.
+callback Function MyOnNewURL(String strURL)
+{
+	String strImageURL[255];
+	strImageURL = strURL;
+	ImageURL = strImageURL;
+	print("%s\n\r",strURL);
+}
+
+
+PUSH Go
+{
+	Init();
+}
+
+
+Function Main()
+{
+    // TODO:  Add code here
+    // Initialize declared global and local variables/arrays as needed.
+
+    WaitForInitializationComplete();
+}
+
+

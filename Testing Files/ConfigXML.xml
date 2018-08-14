@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<Room name="RoomName">
+	<Projectors>
+		<Projector>
+			<Name>Left</Name>
+			<Make>Sony</Make>
+			<Model>Projector1</Model>
+			<Connection address="x.x.x.x" port="22" username="test" password="test" protocol="ssh"/>
+			<Commands>
+				<On>PWR ON</On>
+				<Off>PWR OFF</Off>
+				<Source1 name="HDMI 1">SRC 1</Source1>
+				<Source2 name="HDMI 2">SRC 2</Source2>
+				<Source3 name="PC 1">SRC 3</Source3>
+			</Commands>
+		</Projector>
+		<Projector>
+			<Name>Right</Name>
+			<Make>Epson</Make>
+			<Model>Projector2</Model>
+			<Connection address="x.x.x.x" port="23" protocol="telnet"/>
+			<Commands>
+				<On>POWER 1</On>
+				<Off>POWER 0</Off>
+				<Source1 name="HDMI 1">SOURCE 0</Source1>
+				<Source2 name="HDMI 2">SOURCE 1</Source2>
+				<Source3 name="PC 1">SOURCE 2</Source3>
+			</Commands>
+		</Projector>
+	</Projectors>
+	<Sources>
+		<Source>
+			<Name>BluRay</Name>
+			<Input>HDMI 1</Input>
+		</Source>
+		<Source>
+			<Name>DM</Name>
+			<Input>HDMI 2</Input>
+		</Source>
+		<Source>
+			<Name>In-Room PC</Name>
+			<Input>PC 1</Input>
+		</Source>
+	</Sources>
+</Room>
